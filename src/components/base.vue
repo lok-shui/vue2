@@ -1,25 +1,24 @@
 <template>
   <div>
-    日期： 
-    <!-- <el-date-picker 
-      v-model="createDate" 
-      type="datetime"  
-      value-format="yyyy-MM-dd HH:mm:ss" 
-      placeholder="选择日期时间" 
-      @change="startTimeStatus" 
-      :picker-options="pickerOptionsStart" 
+    日期：
+    <!-- <el-date-picker
+      v-model="createDate"
+      type="datetime"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      placeholder="选择日期时间"
+      @change="startTimeStatus"
+      :picker-options="pickerOptionsStart"
       style="margin-right: 10px;">
     </el-date-picker> -->
       至
-    <!-- <el-date-picker 
-      v-model="overDate" 
-      type="datetime" 
-      value-format="yyyy-MM-dd HH:mm:ss" 
-      placeholder="选择日期时间" 
-      @change="endTimeStatus" 
+    <!-- <el-date-picker
+      v-model="overDate"
+      type="datetime"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      placeholder="选择日期时间"
+      @change="endTimeStatus"
       :picker-options="pickerOptionsEnd">
     </el-date-picker> -->
-
     <el-date-picker
       v-model="createDate"
       type="date"
@@ -39,9 +38,6 @@
       :picker-options="pickerOptionsEnd"
       @change="changeEnd">
     </el-date-picker>
-    0000
-    
-   
   <!-- <el-form
     :model="ruleForm"
     :rules="rules"
@@ -115,29 +111,28 @@ export default {
   data () {
     return {
       createDate: '',
-      overDate:'',
+      overDate: '',
       pickerOptionsStart: {},
       pickerOptionsEnd: {},
       // pickerOptionsStart: {
       //   disabledDate: time => {
-      //     let endDateVal = this.overDate;
+      //     let endDateVal = this.overDate
       //     if (endDateVal) {
-      //       return time.getTime() > new Date(endDateVal).getTime();
+      //       return time.getTime() > new Date(endDateVal).getTime()
       //     }
       //   }
       // },
       // pickerOptionsEnd: {
       //   disabledDate: time => {
-      //     let beginDateVal = this.createDate;
+      //     let beginDateVal = this.createDate
       //     if (beginDateVal) {
       //       return (
       //         time.getTime() <
       //         new Date(beginDateVal).getTime()
-      //       );
+      //       )
       //     }
       //   },
       // },
-             
       ruleForm: {
         name: '',
         region: '',
@@ -146,94 +141,89 @@ export default {
         delivery: false,
         type: [],
         resource: '',
-        desc: '',
+        desc: ''
       },
       rules: {
         name: [
           { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' },
+          { required: true, message: '请选择活动区域', trigger: 'change' }
         ],
         date1: [
           {
             type: 'date',
             required: true,
             message: '请选择日期',
-            trigger: 'change',
-          },
+            trigger: 'change'
+          }
         ],
         date2: [
           {
             type: 'date',
             required: true,
             message: '请选择时间',
-            trigger: 'change',
-          },
+            trigger: 'change'
+          }
         ],
         type: [
           {
             type: 'array',
             required: true,
             message: '请至少选择一个活动性质',
-            trigger: 'change',
-          },
+            trigger: 'change'
+          }
         ],
         resource: [
-          { required: true, message: '请选择活动资源', trigger: 'change' },
+          { required: true, message: '请选择活动资源', trigger: 'change' }
         ],
-        desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }],
-      },
-    };
+        desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }]
+      }
+    }
   },
   methods: {
     // 时间开始选择器
     // startTimeStatus(value){
     //   this.createDate = value
     // },
-    
     // 时间结束选择器
     // endTimeStatus(value){
     //     this.overDate = value
     // },
-
-    changeStart(){
-      console.log('开始',this.createDate)
+    changeStart () {
       this.pickerOptionsEnd = Object.assign({}, this.pickerOptionsEnd, {
         disabledDate: (time) => {
-          console.log('time的值',time)
           if (this.createDate) {
             return time.getTime() < this.createDate
           }
         }
-      })	
+      })
     },
     changeEnd () { // 限制结束时间
       this.pickerOptionsStart = Object.assign({}, this.pickerOptionsStart, {
-      disabledDate: (time) => {
+        disabledDate: (time) => {
           if (this.overDate) {
-            //如果没有后面的-8.64e7就是不可以选择今天的
-            //减去一天的时间代表可以选择同一天; 1*24*60*60*1000;
-            return time.getTime() > this.overDate-8.64e7 //-8.64e7可以让开始时间和结束时间选同一天
-            }
+            // 如果没有后面的-8.64e7就是不可以选择今天的
+            // 减去一天的时间代表可以选择同一天: 1*24*60*60*1000
+            return time.getTime() > this.overDate - 8.64e7 // -8.64e7可以让开始时间和结束时间选同一天
           }
-      })			
+        }
+      })
     },
-
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("submit!", this.$refs[formName].resetFields());
+          console.log('submit!', this.$refs[formName].resetFields())
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    },
-  },
-};
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+    }
+  }
+}
 </script>

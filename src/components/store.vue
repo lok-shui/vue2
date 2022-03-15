@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    changeVal (){
+    changeVal () {
       this.$store.commit('mutationsHello', 2)
     }
   }

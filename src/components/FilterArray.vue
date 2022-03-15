@@ -33,24 +33,24 @@ export default {
         'a',
         {},
         {},
-      ],
-    };
+      ]
+    }
   },
   mounted () {
-    const a = this.unique(this.arr);
-    console.log('新数组', a);
-    const c = ['1', '2', '3'];
-    const d = c.splice(3, 0, '4');
-    console.log('d的值', c);
-    console.log('原数组', this.arr);
+    const a = this.unique(this.arr)
+    console.log('新数组', a)
+    const c = ['1', '2', '3']
+    const d = c.splice(3, 0, '4')
+    console.log('d的值', c)
+    console.log('原数组', this.arr)
   },
   methods: {
-    unique(array) {
+    unique (array) {
       let len = array.length
       array.sort((a, b) => {
         return a - b
       })
-      function loop(index) {
+      function loop (index) {
         if (index >= 1) {
           if (array[index] === array[index -1]) {
             array.splice(index, 1)
@@ -60,7 +60,7 @@ export default {
       }
       loop(len - 1)
       return array
-    },
-  },
-};
+    }
+  }
+}
 </script>

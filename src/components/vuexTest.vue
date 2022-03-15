@@ -10,9 +10,9 @@
 <script>
 export default {
   watch: {
-    gettersHello(newVal, oldVal) {
-      console.log('gettersHello newVal', newVal);
-      console.log('gettersHello oldVal', oldVal);
+    gettersHello (newVal, oldVal) {
+      console.log('gettersHello newVal', newVal)
+      console.log('gettersHello oldVal', oldVal)
     }
   },
   computed: {

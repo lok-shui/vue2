@@ -16,7 +16,7 @@ export default {
     }
   },
   mutations: {
-    mutationsHello(state, val) {
+    mutationsHello (state, val) {
       console.log('val', val)
       state.stateHello += val
     }

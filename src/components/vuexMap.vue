@@ -2,7 +2,7 @@
   <div class='vuexReponse'>
     <!-- 网址：https://www.jb51.net/article/216910.htm -->
     使用辅助函数：
-    <button @click='changeVal'>点击</button>
+    <button @click="changeVal">点击</button>
     <div>展示stateVal的值: {{stateVal}}</div>
     <div>展示gettersVal的值: {{gettersVal}}</div>
     <div>展示gettersHelloVal的值 {{gettersHelloVal}}</div>
@@ -14,9 +14,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'vuexReponse',
   watch: {
-    gettersHello(newVal, oldVal) {
-      console.log('gettersHello newVal', newVal);
-      console.log('gettersHello oldVal', oldVal);
+    gettersHello (newVal, oldVal) {
+      console.log('gettersHello newVal', newVal)
+      console.log('gettersHello oldVal', oldVal)
     }
   },
   computed: {
